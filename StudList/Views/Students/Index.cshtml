@@ -1,0 +1,39 @@
+﻿@model IEnumerable<StudList.Models.Subject>
+@{
+    ViewData["Title"] = "Home Page";
+    int id_spec = 0;
+}
+
+<html>
+    <head>
+        <style>
+           .btn {
+            display: inline-block; /* Строчно-блочный элемент */
+            background: #8C959D; /* Серый цвет фона */
+            color: #fff; /* Белый цвет текста */
+            padding: 1rem 1.5rem; /* Поля вокруг текста */
+            text-decoration: none; /* Убираем подчёркивание */
+            border-radius: 3px; /* Скругляем уголки */
+           }
+          </style>
+    </head>
+    <body>
+        <div class="text-center">
+            <h1 class="display-4">Выберите предмет</h1>
+            <select onChange="myFunction(this.options[this.selectedIndex].value)">
+                <script>
+                    function myFunction(chosen){
+                        let s = "Students/Show/"+chosen;
+                        document.location.replace(s);
+                    }
+                </script>
+                <option selected disabled>Выберите предмет</option>
+                 <option >все</option>
+            @foreach(var Subject in Model)
+            {
+                <option  value="@Subject.Id">@Subject.Name</option>
+            }
+            </select>
+        </div>
+    </body>
+</html>
